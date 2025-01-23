@@ -16,7 +16,7 @@ spec:
     - name: kaniko-secret
       mountPath: /kaniko/.docker/
     env:
-      - name: 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
+      - name: $
         valueFrom:
           secretKeyRef:
             name: github
