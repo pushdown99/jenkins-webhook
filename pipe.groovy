@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Pod
 spec:
   containers:
-    - name: java17
+    - name: jnlp
       image: amazoncorretto:17-alpine-full
       command:
         - tail
@@ -17,7 +17,7 @@ spec:
 ''') {
     node(POD_LABEL) {
         stage("test") {
-            container('java17') {
+            container('jnlp') {
                 sh "echo hello"
             }
         }
