@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kaniko-debug
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: kaniko
+        image: gcr.io/kaniko-project/executor:debug
+        command:
+          [
+            "/busybox/sleep", "infinity"
+          ]
+        volumeMounts:
+          - name: dockerfile
+            mountPath: /test/Dockerfile
+            subPath: Dockerfile
+      volumes:
+        - name: dockerfile
+          configMap:
+            name: kaniko-cm

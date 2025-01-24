@@ -1,11 +1,11 @@
-FROM node:14
-WORKDIR /app
-#COPY package*.json ./
-#
-#
-RUN npm install
-COPY . .
-COPY env-sample .env
-RUN export $(cat .env | grep PORT | xargs)
-EXPOSE $PORT
-CMD ["node", "index.js"]
+FROM nginx:1.19.5
+
+USER root
+
+RUN apt-get update -y \
+    && apt-get install -y  \
+       net-tools \
+       procps \
+       vim
+
+WORKDIR /etc/nginx
