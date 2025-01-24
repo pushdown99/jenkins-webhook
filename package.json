@@ -1,5 +1,5 @@
 {
-  "name": "jenkins-hello-world",
+  "name": "jenkins-webhook",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
