@@ -3,7 +3,7 @@ pipeline {
     agent any
     parameters {
         string (
-            defaultValue: 'silence',
+            defaultValue: 'greeting',
             description: '',
             name: 'REQUESTED_ACTION')
     }
