@@ -9,10 +9,12 @@ pipeline {
     }
 
     stages {
-        stage ('Speak') {
+        stage ('prepare') {
             steps {
-                echo  params.REQUESTED_ACTION 
+                echo  params.REQUESTED_ACTION
             }
+        }
+        stage ('Speak') {
             when {
                 // Only say hello if a "greeting" is requested
                 expression { params.REQUESTED_ACTION == 'greeting' }
