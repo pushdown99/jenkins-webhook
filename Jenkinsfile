@@ -3,25 +3,27 @@ pipeline {
     agent any
     parameters {
         choice (
-            choices: [ 'greeting', 'silence' ],
+            choices: [ 'build', 'deploy' ],
             description: '',
             name: 'REQUESTED_ACTION'
         )
     }
 
     stages {
-        stage ('prepare') {
+        stage ('Build') {
+            when {
+                expression { params.REQUESTED_ACTION == 'build' }
+            }
             steps {
-                echo  params.REQUESTED_ACTION
+                echo "Build, process!"
             }
         }
-        stage ('Speak') {
+        stage ('Deploy') {
             when {
-                // Only say hello if a "greeting" is requested
-                expression { params.REQUESTED_ACTION == 'greeting' }
+                expression { params.REQUESTED_ACTION == 'deploy' }
             }
             steps {
-                echo "Hello, bitwiseman!"
+                echo "Deploy, process!"
             }
         }
     }
