@@ -1,19 +1,21 @@
+Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
+    parameters {
+        choice(
+            choices: ['greeting' , 'silence'],
+            description: '',
+            name: 'REQUESTED_ACTION')
+    }
+
     stages {
-        stage('build') {
-            steps {
-                echo 'building the application...'
+        stage ('Speak') {
+            when {
+                // Only say hello if a "greeting" is requested
+                expression { params.REQUESTED_ACTION == 'greeting' }
             }
-        }
-        stage('test') {
             steps {
-                echo 'testing the application...'
-            }
-        }
-        stage('deploy') {
-            steps {
-                echo 'deploying the application...'
+                echo "Hello, bitwiseman!"
             }
         }
     }
