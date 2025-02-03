@@ -2,10 +2,11 @@
 pipeline {
     agent any
     parameters {
-        choice(
-            choices: [ 'silence', 'greeting' ],
+        choice (
+            choices: [ 'greeting', 'silence' ],
             description: '',
-            name: 'REQUESTED_ACTION')
+            name: 'REQUESTED_ACTION'
+        )
     }
 
     stages {
