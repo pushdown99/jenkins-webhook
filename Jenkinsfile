@@ -2,7 +2,7 @@
 pipeline {
     agent any
     parameters {
-        choice(
+        string (
             defaultValue: 'silence',
             description: '',
             name: 'REQUESTED_ACTION')
