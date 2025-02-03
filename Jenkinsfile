@@ -2,8 +2,8 @@
 pipeline {
     agent any
     parameters {
-        string (
-            defaultValue: 'greeting',
+        choice(
+            choices: ['greeting' , 'silence'],
             description: '',
             name: 'REQUESTED_ACTION')
     }
