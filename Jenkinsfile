@@ -1,6 +1,12 @@
 
 pipeline {
     agent any
+    parameters {
+        choice(
+            defaultValue: 'silence',
+            description: '',
+            name: 'REQUESTED_ACTION')
+    }
 
     stages {
         stage ('Speak') {
