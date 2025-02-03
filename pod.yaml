@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+spec:
+  restartPolicy: Never
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:latest
+    imagePullPolicy: Always
+    args: [ "--dockerfile=./Dockerfile",
+            "--context=git://github.com/pushdown99/jenkins-webhook.git",
+            "--destination=pushdown99/kaniko-demo" ]
+    volumeMounts: #  volumeMount or env 선택
+    - name: kaniko-secret
+      mountPath: /kaniko/.docker/
+  restartPolicy: Never
+  volumes: #  env 선택 시 불필요
+  - name: kaniko-secret
+    secret:
+      secretName: regcred
+      items:
+        - key: .dockerconfigjson
+          path: config.json
